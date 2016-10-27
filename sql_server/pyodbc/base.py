@@ -106,7 +106,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'exact': '= %s',
         'iexact': "= UPPER(%s)",
         'contains': "LIKE %s ESCAPE '\\'",
-        'icontains': "LIKE UPPER(%s) ESCAPE '\\'",
+        'icontains': "LIKE UPPER(%s)",
         'gt': '> %s',
         'gte': '>= %s',
         'lt': '< %s',
@@ -357,7 +357,6 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         # hasn't told us otherwise
         options = settings_dict.get('OPTIONS', {})
         datefirst = options.get('datefirst', 7)
-        cursor.execute('SET DATEFORMAT ymd; SET DATEFIRST %s' % datefirst)
 
         # http://blogs.msdn.com/b/sqlnativeclient/archive/2008/02/27/microsoft-sql-server-native-client-and-microsoft-sql-server-2008-native-client.aspx
         try:
